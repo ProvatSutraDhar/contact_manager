@@ -1,3 +1,9 @@
+<%if  @my_contacts.blank?%>
+<div class="alert alert-warning">
+  <strong>No record found</strong>
+
+</div>
+<%end%>
 <table class="table">
 <%=render @my_contacts%>
 </table>
