@@ -23,6 +23,20 @@ class MyContactsController < ApplicationController
         end
     end
 
+    def edit
+      @my_contact =MyContact.find(params[:id])
+    end
+
+    def update
+      @my_contact =MyContact.find(params[:id])
+        if @my_contact.update(contact_params)
+          flash[:success]= "Contact updated successfully."
+            redirect_to contacts_path
+        else
+          render 'edit'
+        end
+    end
+
     private
 
     def contact_params
