@@ -1,9 +1,17 @@
-<%if  @my_contacts.blank?%>
-<div class="alert alert-warning">
-  <strong>No record found</strong>
 
+<div class="row">
+  <table class="table">
+  <%if  @my_contacts.blank?%>
+  <div class="alert alert-warning">
+    <strong>No record found</strong>
+  </div>
+  <%end%>
+
+  <%=render @my_contacts%>
+  </table>
 </div>
-<%end%>
-<table class="table">
-<%=render @my_contacts%>
-</table>
+<div class="text-center">
+  <nav>
+   <%= paginate @my_contacts%>
+  </nav>
+</div>
