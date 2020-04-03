@@ -2,6 +2,20 @@
          <div class="panel-heading">
            <strong>Add Contact</strong>
          </div>
+   <%if @my_contact.errors.any?%>
+   <div class="row">
+     <div class="col-md-12">
+        <div class="alert alert-danger">
+          <h3>Please correct this following errors</h3>
+            <ul>
+                <%@my_contact.errors.full_messages.each do |msg|%>
+                <li> <%=msg%> </li>
+                <%end%>
+              </ul>
+           </div>
+        </div>
+   </div>
+  <%end%>
 
 <form action="/my_contacts/create" method="post">
   <input type="hidden" name="authenticity_token" value="<%form_authenticity_token%>">
