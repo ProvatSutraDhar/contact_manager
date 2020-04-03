@@ -13,4 +13,21 @@ class MyContactsController < ApplicationController
       @my_contact = MyContact.new
     end
 
+    def create
+      @my_contact = MyContact.new(contact_params)
+        if @my_contact.save
+            flash[:success]= "Contact save successfully."
+             redirect_to contacts_path
+          else
+            render 'new'
+        end
+    end
+
+    private
+
+    def contact_params
+      params.require(:my_contact).permit(:name,:email,:phone,:company,:address, :group_id)
+
+    end
+
 end
