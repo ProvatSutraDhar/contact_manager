@@ -21,6 +21,8 @@ gem 'faker', '~> 2.11'
 gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 gem 'jquery-rails'
 gem 'kaminari', '~> 1.2'
+gem 'paperclip', '~> 6.1'
+gem 'jasny-bootstrap-rails', '~> 3.1', '>= 3.1.3'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
