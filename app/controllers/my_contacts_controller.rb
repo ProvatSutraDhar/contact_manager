@@ -37,6 +37,18 @@ class MyContactsController < ApplicationController
         end
     end
 
+    def destroy
+        @my_contact =MyContact.find(params[:id])
+        if @my_contact.destroy
+        flash[:danger]= "Contact has deleted!"
+          redirect_to contacts_path
+        else
+          flash[:danger]= "Something went wrong!"
+            redirect_to contacts_path  
+        end
+
+
+    end
     private
 
     def contact_params
