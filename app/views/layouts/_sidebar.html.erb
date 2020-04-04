@@ -1,13 +1,13 @@
 <div class="col-md-3">
   <div class="list-group">
     <% active= params[:group_id]== nil || params[:group_id].empty? ? 'active' : ''%>
-    <%= link_to contacts_path, class: "list-group-item #{active}" do %>
+    <%= link_to my_contacts_path, class: "list-group-item #{active}" do %>
       All Contact <span class="badge"><%= MyContact.count%></span>
     <%end%>
 
     <%Group.all.each do |group|%>
       <% active= params[:group_id].to_i == group.id ? 'active' : ''%>
-    <%= link_to contacts_path(group_id: group.id), class: "list-group-item #{active}" do %>
+    <%= link_to my_contacts_path(group_id: group.id), class: "list-group-item #{active}" do %>
     <%=group.name%> <span class="badge"><%= group.my_contacts.count%></span>
     <%end%>
 <%end%>

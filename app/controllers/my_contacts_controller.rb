@@ -1,5 +1,5 @@
 class MyContactsController < ApplicationController
-
+    before_action :find_contact, only:[:edit, :update, :destroy]
     def index
         if params[:group_id] && !params[:group_id].empty?
           #@my_contacts = MyContact.where(group_id: params[:group_id]).page(params[:page])
@@ -7,6 +7,10 @@ class MyContactsController < ApplicationController
         else
             @my_contacts = MyContact.order(created_at: :desc).page(params[:page])
         end
+    end
+
+    def show
+
     end
 
     def new
@@ -17,34 +21,33 @@ class MyContactsController < ApplicationController
       @my_contact = MyContact.new(contact_params)
         if @my_contact.save
             flash[:success]= "Contact save successfully."
-             redirect_to contacts_path
+             redirect_to my_contacts_path
           else
             render 'new'
         end
     end
 
     def edit
-      @my_contact =MyContact.find(params[:id])
+
     end
 
     def update
-      @my_contact =MyContact.find(params[:id])
         if @my_contact.update(contact_params)
           flash[:success]= "Contact updated successfully."
-            redirect_to contacts_path
+            redirect_to my_contacts_path
         else
           render 'edit'
         end
     end
 
     def destroy
-        @my_contact =MyContact.find(params[:id])
+
         if @my_contact.destroy
         flash[:danger]= "Contact has deleted!"
-          redirect_to contacts_path
+          redirect_to my_contacts_path
         else
           flash[:danger]= "Something went wrong!"
-            redirect_to contacts_path  
+            redirect_to my_contacts_path
         end
 
 
@@ -53,6 +56,11 @@ class MyContactsController < ApplicationController
 
     def contact_params
       params.require(:my_contact).permit(:name,:email,:phone,:company,:address, :group_id, :avatar)
+
+    end
+
+    def find_contact
+        @my_contact =MyContact.find(params[:id])
 
     end
 

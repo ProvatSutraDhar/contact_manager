@@ -1,5 +1,5 @@
 
-<%=form_for(@my_contact, url: @my_contact.new_record? ? create_contact_path : update_contact_path(@my_contact), html: { multipart: true }) do |f| %>
+<%=form_for(@my_contact, url: @my_contact.new_record? ? my_contacts_path : my_contact_path(@my_contact), html: { multipart: true }) do |f| %>
 
 <%if @my_contact.errors.any?%>
 <div class="row">
