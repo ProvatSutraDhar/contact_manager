@@ -15,4 +15,31 @@ def gravatar
    "https://www.gravatar.com/avatar/#{hash}"
 end
 
+#Search query for all contact
+
+scope :search, -> (term) do
+  where('LOWER(name) LIKE :term or LOWER(company) LIKE :term or LOWER(phone) LIKE :term or LOWER(email) LIKE :term or LOWER(address) LIKE :term',term: "%#{term.downcase}%") if term.present?
+  end
+#def self.search(term)
+  #  if term && !term.empty?
+    #  where('name LIKE ?', "%#{term}%")
+    #  else
+    #  all
+  #  end
+#  end
+
+#Search from group contact
+
+scope :by_group, -> (group_id){where(group_id: group_id) if group_id.present?}
+#def self.by_group(group_id)
+  #if group_id && !group_id.empty?
+  #  where(group_id: group_id)
+#  else
+#    all
+#  end
+#end
+
+
+
+
 end

@@ -4,19 +4,19 @@ class MyContactsController < ApplicationController
 
     def index
       session[:selected_group_id] = params[:group_id]
-        if params[:group_id] && !params[:group_id].empty?
+        #if params[:group_id] && !params[:group_id].empty?
           #@my_contacts = MyContact.where(group_id: params[:group_id]).page(params[:page])
 
-          group = Group.find(params[:group_id])
-          if params[:term] && !params[:term].empty?
-              @my_contacts = group.my_contacts.where('name LIKE ?', "%#{params[:term]}%").order(created_at: :desc).page(params[:page])
-            else
-              @my_contacts = group.my_contacts.order(created_at: :desc).page(params[:page])
+          #group = Group.find(params[:group_id])
+          #if params[:term] && !params[:term].empty?
+            #  @my_contacts = group.my_contacts.search([:term]).order(created_at: :desc).page(params[:page])
+          #  else
+            #  @my_contacts = group.my_contacts.order(created_at: :desc).page(params[:page])
 
-          end
-        else
-            @my_contacts = MyContact.where('name LIKE ?', "%#{params[:term]}%").order(created_at: :desc).page(params[:page])
-        end
+        #  end
+        #else
+            @my_contacts = MyContact.by_group(params[:group_id]).search(params[:term]).order(created_at: :desc).page(params[:page])
+      #  end
     end
 
     def show
